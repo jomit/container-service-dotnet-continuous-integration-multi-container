@@ -20,3 +20,28 @@ docker-compose up --build
 ```
 
 The frontend service (service-a) will be available at http://localhost:8080.
+
+## Integration with Azure Container Service 
+https://docs.microsoft.com/en-us/azure/container-service/container-service-setup-ci-cd
+
+```
+
+az login
+
+az account set --subscription <subscription id>
+
+az acs list   (use this to see the acs name)
+
+az container release create ^
+--target-name containerservice-ACSTrials ^
+--target-resource-group ACSTrials ^
+--registry-name jomitregistry ^
+--vsts-account-name jomitv ^
+--vsts-project-name ACSTrials ^
+--remote-access-token <Git Token>
+
+az container release list ^
+--target-name containerservice-ACSTrials ^
+--target-resource-group ACSTrials
+
+```
